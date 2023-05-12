@@ -9,12 +9,11 @@ import java.util.Scanner;
 public class ProductManage implements IOFile<Product> {
     private List<Product> products;
     private static Scanner scanner;
-    private final String PATH_FILE = "D:\\02_Study\\thi-thuc-hanh\\src\\bai1\\product.csv";
 
     public ProductManage() {
         products = new ArrayList<>();
         scanner = new Scanner(System.in);
-        products = read(PATH_FILE);
+        products = read();
         checkDefaultIndex();
     }
 
@@ -78,7 +77,7 @@ public class ProductManage implements IOFile<Product> {
         String type = scanner.nextLine();
         Product product = new Product(name, price, quantity, type);
         products.add(product);
-        write(products,PATH_FILE);
+        write();
         return product;
     }
 
@@ -98,7 +97,7 @@ public class ProductManage implements IOFile<Product> {
         product.setType(type);
         Product product1 = new Product(name, price, quantity, type);
         products.add(product1);
-        write(products,PATH_FILE);
+        write();
         return product1;
     }
 
@@ -107,7 +106,7 @@ public class ProductManage implements IOFile<Product> {
         if (product != null) {
             products.remove(product);
         }
-        write(products, PATH_FILE);
+        write();
         return product;
     }
 
@@ -138,10 +137,11 @@ public class ProductManage implements IOFile<Product> {
 
 
     @Override
-    public void write(List<Product> e, String path) {
-        File file = new File(path);
+    public void write() {
+        File file = new File("D:\\02_Study\\thi-thuc-hanh\\src\\bai1\\product.csv");
+        List<Product> products1 = new ArrayList<>();
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
-            for (Product product : e) {
+            for (Product product : products1) {
                 bufferedWriter.write(product.getId() + "," + product.getName() + ","
                         + product.getName() + "," + product.getPrice()+ ","
                         + product.getQuantity() + "," + product.getType()+ "\n");
@@ -152,8 +152,8 @@ public class ProductManage implements IOFile<Product> {
     }
 
     @Override
-    public ArrayList<Product> read(String path) {
-        File file = new File(path);
+    public ArrayList<Product> read() {
+        File file = new File("D:\\02_Study\\thi-thuc-hanh\\src\\bai1\\product.csv");
         ArrayList<Product> products1= new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String data;

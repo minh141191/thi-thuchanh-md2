@@ -49,13 +49,10 @@ public class Main {
                     productManage.searchByMaxPrice();
                     break;
                 case 7:
-                    File file = new File("D:\\02_Study\\thi-thuc-hanh\\src\\bai1\\product.csv");
-                    productManage.read(String.valueOf(file));
+                    productManage.read();
                     break;
                 case 8:
-                    List<Product> products = new ArrayList<>();
-                    File file1 = new File("D:\\02_Study\\thi-thuc-hanh\\src\\bai1\\product.csv");
-                    productManage.write(products, String.valueOf(file1));
+                    productManage.write();
                     break;
                 case 0:
                     System.exit(0);
